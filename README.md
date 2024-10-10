@@ -20,6 +20,10 @@ This project is a proof-of-concept for Retrieval-Augmented Generation (RAG) usin
 
 ## Infrastructure Architecture
 
+# [More UML documentation here at](https://plantuml.com/sequence-diagram)
+
+- The UML diagram was created with a plugin called "PlanUML" which is a free for MS Code, PyCharm or intelliJ
+
 ![infra-architecture.puml](diagrams/infra-architecture.png)
 
 ## What is RAG?
