@@ -1,0 +1,99 @@
+@startuml
+left to right direction
+
+skinparam rectangle {
+	BackgroundColor DarkSeaGreen
+	FontStyle Bold
+	FontColor DarkGreen
+}
+skinparam usecase {
+ 	BackgroundColor Pink
+ 	FontColor DarkRed
+ 	FontStyle Bold
+}
+skinparam note {
+	BackgroundColor LightYellow
+	FontColor Black
+}
+
+:user: as u
+(Vector DB) as vdb
+
+rectangle Spliter as n1{
+}
+
+note as script1
+Original Text
+==
+As she said this shee looked down
+at her hands, and was surprise
+to see
+that she had put on one of the
+Rabit's little white kid gloves
+while
+she was talking. "How _can I
+have done that?" she thought. "I
+must be
+growing small again." [...]
+end note
+
+
+note as script2
+Chunk 1
+==
+As she said this shee looked down
+at her hands, and was surprise
+to see
+end note
+
+note as script3
+Chunk 2
+==
+that she had put on one of the
+Rabit's little white kid gloves
+while
+she was talking.
+end note
+
+note as script4
+Chunk 3
+==
+"How _can I
+have done that?" she thought. "I
+must be
+growing small again." [...]
+end note
+
+note  as script5
+Embedding 1
+==
+[0.1, 0.2, ...]
+end note
+
+note  as script6
+Embedding 2
+==
+[0.3, 0.1, ...]
+end note
+
+note  as script7
+Embedding 3
+==
+[0.2, 0.5, ...]
+end note
+
+u ...> script1
+script1 --> n1
+n1 --> script2
+n1 --> script3
+n1 --> script4
+script2 --> script5
+script3 --> script6 
+script4 --> script7
+script5 --> vdb
+script6 --> vdb
+script7 --> vdb
+
+
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+:user: as u
+
+component [API Endpoints] as api
+component [AWS Lambda] as lambda
+
+cloud ai
+
+action AWSLambda {
+    action Docker {
+    cloud cloud {
+        process Handler as handler
+        process FastAPI as fastapi
+        process App as app
+        database database as db    
+        handler --> fastapi
+        fastapi --> app
+        app --> db
+        app --> ai
+
+    }
+
+    u --> api
+    api --> lambda
+    lambda --> handler
+    }
+}
+
+
+@enduml

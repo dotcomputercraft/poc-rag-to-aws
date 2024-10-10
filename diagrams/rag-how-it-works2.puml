@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+
+:user: as u
+
+component [Prompt] as prompt
+component [Response] as response
+component [RAG Module] as rag
+cloud ai
+
+u   --> rag
+rag --> prompt
+prompt --> ai
+ai --> response
+
+
+@enduml

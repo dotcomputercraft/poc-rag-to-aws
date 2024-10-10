@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+
+:user: as u
+
+component [Prompt] as prompt
+component [Response] as response
+cloud ai
+
+u   --> prompt
+prompt --> ai
+ai --> response
+
+
+@enduml

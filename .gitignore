@@ -1,0 +1,14 @@
+*.pyc
+**/chroma
+env/
+.env
+sample.env
+
+# Some files generated for tutorial.
+original_reqs.txt
+filtered_reqs.txt
+pip_freeze.txt
+generate_reqs.py
+
+out/
+.DS_Store
