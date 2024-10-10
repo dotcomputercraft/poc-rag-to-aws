@@ -102,7 +102,7 @@ Then go to `http://0.0.0.0:8000/docs` to try it out.
 
 #### Makefile
 
-`Makefile` has some useful commands to help you work with the Django and Celery services.
+`Makefile` has some useful commands to help you work with the Docker container service.
 
 ```angular2html
 build                          Build the docker image used by the 'web' and 'celery' services in the docker-compose.yml
