@@ -127,4 +127,5 @@ def clear_database():
 
 
 if __name__ == "__main__":
+    # For local testing.
     main()

@@ -18,9 +18,13 @@ To address these limitations, we can use a combination of techniques:
 
 This project is a proof-of-concept for Retrieval-Augmented Generation (RAG) using AWS Bedrock, AWS DynamoDB, and Chroma. Chroma, an AI-native, open-source vector database, enhances developer productivity and simplifies running AI models locally. The system leverages AWS Bedrock for embeddings and language model processing, with LangChain Chroma serving as the vector database.
 
-## Infrastructure Architecture
+# UML Diagrams
+
+The UML diagram was created with a plugin called "PlanUML" which is a free for MS Code, PyCharm or intelliJ
 
 # [More UML documentation here at](https://plantuml.com/sequence-diagram)
+
+## Infrastructure Architecture
 
 - The UML diagram was created with a plugin called "PlanUML" which is a free for MS Code, PyCharm or intelliJ
 

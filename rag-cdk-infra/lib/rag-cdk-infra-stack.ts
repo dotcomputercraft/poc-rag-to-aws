@@ -18,6 +18,14 @@ export class RagCdkInfraStack extends cdk.Stack {
     const ragQueryTable = new Table(this, "RagQueryTable", {
       partitionKey: { name: "query_id", type: AttributeType.STRING },
       billingMode: BillingMode.PAY_PER_REQUEST,
+      timeToLiveAttribute: "ttl",
+    });
+
+    // Add secondary index, to query by user_id and create_time.
+    ragQueryTable.addGlobalSecondaryIndex({
+      indexName: "queries_by_user_id",
+      partitionKey: { name: "user_id", type: AttributeType.STRING },
+      sortKey: { name: "create_time", type: AttributeType.NUMBER },
     });
 
     // Lambda function (image) to handle the worker logic (run RAG/AI model).
@@ -27,6 +35,7 @@ export class RagCdkInfraStack extends cdk.Stack {
         platform: "linux/amd64", // Needs x86_64 architecture for pysqlite3-binary.
       },
     });
+    
     const workerFunction = new DockerImageFunction(this, "RagWorkerFunction", {
       code: workerImageCode,
       memorySize: 512, // Increase this if you need more memory.
@@ -44,6 +53,7 @@ export class RagCdkInfraStack extends cdk.Stack {
         platform: "linux/amd64",
       },
     });
+
     const apiFunction = new DockerImageFunction(this, "ApiFunc", {
       code: apiImageCode,
       memorySize: 256,
