@@ -2,8 +2,6 @@ import logging
 from query_model import QueryModel
 from rag_app.query_rag import query_rag
 
-from lib.common import set_logging
-
 from loguru import logger as LOGGER
 
 

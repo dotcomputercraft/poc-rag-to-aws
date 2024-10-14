@@ -5,7 +5,6 @@ import argparse
 # Add Parent Directory Programmatically
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-
 from dataclasses import dataclass
 from typing import List
 from langchain.prompts import ChatPromptTemplate
