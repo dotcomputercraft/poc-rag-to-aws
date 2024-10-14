@@ -4,8 +4,8 @@ from rag_app.query_rag import query_rag
 
 from lib.common import set_logging
 
-LOGGER = logging.getLogger()
-set_logging(LOGGER)
+from loguru import logger as LOGGER
+
 
 def handler(event, context):
     LOGGER.info(

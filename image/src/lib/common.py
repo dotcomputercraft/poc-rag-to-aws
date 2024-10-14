@@ -1,32 +1,20 @@
-import datetime
 import json
-import logging
 import os
-import random
 import threading
 import traceback
 import sys
 
+# Add Parent Directory Programmatically
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import boto3
 from lib.constants import aws_region, ACCESS_KEY, SECRET_KEY
 
-LOGGER = logging.getLogger()
+from loguru import logger as LOGGER
 
-
-def set_logging(logger):
-    # Setup Logging
-    FORMAT = '%(lineno)s %(levelname)s:%(name)s %(asctime)-15s %(message)s'
-    logging.basicConfig(format=FORMAT)
-
-    if os.getenv('STAGE') == 'dev' or os.getenv('VERBOSE', '').lower() in ('true', '1'):
-        logger.setLevel(logging.DEBUG)
-    else:
-        logger.setLevel(logging.INFO)
-    logging.getLogger('boto3').setLevel(logging.WARNING)
-    logging.getLogger('botocore').setLevel(logging.WARNING)
-    logging.getLogger('nose').setLevel(logging.WARNING)
-    logging.getLogger('urllib3').setLevel(logging.WARNING)
-
+# Configuration Values
+SQS_ACCOUNT_INFO = os.environ.get('SQS_ACCOUNT_INFO')
+S3_ACCOUNT_INFO= os.environ.get('S3_ACCOUNT_INFO')
 
 def get_secret(key):
     client = get_boto3_session().client('ssm',

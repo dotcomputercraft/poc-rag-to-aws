@@ -2,7 +2,6 @@ import argparse
 import os
 import sys
 import shutil
-import logging
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
@@ -10,26 +9,10 @@ from langchain_community.vectorstores import Chroma
 
 from src.rag_app.get_embedding_function import get_embedding_function
 
-def set_logging(logger):
-    # Setup Logging
-    FORMAT = '%(lineno)s %(levelname)s:%(name)s %(asctime)-15s %(message)s'
-    logging.basicConfig(format=FORMAT)
-
-    if os.getenv('STAGE') == 'dev' or os.getenv('VERBOSE', '').lower() in ('true', '1'):
-        logger.setLevel(logging.DEBUG)
-    else:
-        logger.setLevel(logging.INFO)
-    logging.getLogger('boto3').setLevel(logging.WARNING)
-    logging.getLogger('botocore').setLevel(logging.WARNING)
-    logging.getLogger('nose').setLevel(logging.WARNING)
-    logging.getLogger('urllib3').setLevel(logging.WARNING)
-
-LOGGER = logging.getLogger()
-set_logging(LOGGER)
+from loguru import logger as LOGGER
 
 CHROMA_PATH = "image/src/data/chroma"
 DATA_SOURCE_PATH = "image/src/data/source"
-
 
 def main():
 
@@ -76,7 +59,7 @@ def add_to_chroma(chunks: list[Document]):
     # Add or Update the documents.
     existing_items = db.get(include=[])  # IDs are always included by default
     existing_ids = set(existing_items["ids"])
-    print(f"Number of existing documents in DB: {len(existing_ids)}")
+    LOGGER.info(f"Number of existing documents in DB: {len(existing_ids)}")
 
     # Only add documents that don't exist in the DB.
     new_chunks = []
@@ -85,7 +68,7 @@ def add_to_chroma(chunks: list[Document]):
             new_chunks.append(chunk)
 
     if len(new_chunks):
-        print(f"Adding new documents: {len(new_chunks)}")
+        LOGGER.info(f"Adding new documents: {len(new_chunks)}")
         new_chunk_ids = [chunk.metadata["id"] for chunk in new_chunks]
         db.add_documents(new_chunks, ids=new_chunk_ids)
     else:
@@ -128,4 +111,5 @@ def clear_database():
 
 if __name__ == "__main__":
     # For local testing.
+    LOGGER.info("main() invoked - populate_database.py - For local testing.")
     main()

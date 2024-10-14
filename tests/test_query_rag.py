@@ -1,5 +1,6 @@
 from image.src.rag_app.query_rag import query_rag
 
+from loguru import logger as LOGGER
 
 def test_design_client_guide_question1():
     assert query_and_validate(
@@ -28,22 +29,22 @@ def test_ticket_to_ride_question():
 def query_and_validate(question: str, expected_response: str):
     
     raw_results = query_rag(question)
-    print(f"raw_results: {raw_results}")
+    LOGGER.info(f"raw_results: {raw_results}")
    
     evaluation_results_str_cleaned = raw_results.response_text.lower().strip()
 
-    print(f"expected_response: {expected_response}")
-    print(f"evaluation_results_str: {evaluation_results_str_cleaned}")
+    LOGGER.info(f"expected_response: {expected_response}")
+    LOGGER.info(f"evaluation_results_str: {evaluation_results_str_cleaned}")
 
     if  expected_response in evaluation_results_str_cleaned:
         # Print response in Green if it is correct.
-        print("Print response in Green if it is correct.")
-        print("\033[92m" + f"Response: {evaluation_results_str_cleaned}" + "\033[0m")
+        LOGGER.info("Print response in Green if it is correct.")
+        LOGGER.info("\033[92m" + f"Response: {evaluation_results_str_cleaned}" + "\033[0m")
         return True
     elif expected_response not in evaluation_results_str_cleaned:
         # Print response in Red if it is incorrect.
-        print("Print response in Red if it is incorrect.")
-        print("\033[91m" + f"Response: {evaluation_results_str_cleaned}" + "\033[0m")
+        LOGGER.info("Print response in Red if it is incorrect.")
+        LOGGER.info("\033[91m" + f"Response: {evaluation_results_str_cleaned}" + "\033[0m")
         return False
     else:
         raise ValueError(

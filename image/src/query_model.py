@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 from botocore.exceptions import ClientError
 
-from lib.common import set_logging, get_boto3_session
+from lib.common import get_boto3_session
 
 db_region = os.environ.get('AWS_DEFAULT_REGION')
 TABLE_NAME = os.environ.get('TABLE_NAME')
@@ -19,8 +19,8 @@ TTL_EXPIRE_MONTHS = 6  # Only keep queries for 6 months.
 TTL_EXPIRE_TIMESTAMP = 60 * 60 * 24 * 30 * TTL_EXPIRE_MONTHS
 GSI_INDEX_NAME = "queries_by_user_id"
 
-LOGGER = logging.getLogger()
-set_logging(LOGGER)
+from loguru import logger as LOGGER
+
 
 class QueryModel(BaseModel):
     query_id: str = Field(default_factory=lambda: uuid.uuid4().hex)

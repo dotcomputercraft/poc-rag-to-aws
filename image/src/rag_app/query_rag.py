@@ -1,5 +1,4 @@
 import sys
-import logging
 import os
 import argparse
 
@@ -14,27 +13,11 @@ from langchain_aws import ChatBedrock
 
 from rag_app.get_chroma_db import get_chroma_db
 
+from loguru import logger as LOGGER
+
 # You will also need to have Bedrock's model name enabled and granted for the region you are running this in.
 
 BEDROCK_MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
-
-def set_logging(logger):
-    # Setup Logging
-    FORMAT = '%(lineno)s %(levelname)s:%(name)s %(asctime)-15s %(message)s'
-    logging.basicConfig(format=FORMAT)
-
-    if os.getenv('STAGE') == 'dev' or os.getenv('VERBOSE', '').lower() in ('true', '1'):
-        logger.setLevel(logging.DEBUG)
-    else:
-        logger.setLevel(logging.INFO)
-    logging.getLogger('boto3').setLevel(logging.WARNING)
-    logging.getLogger('botocore').setLevel(logging.WARNING)
-    logging.getLogger('nose').setLevel(logging.WARNING)
-    logging.getLogger('urllib3').setLevel(logging.WARNING)
-
-
-LOGGER = logging.getLogger()
-set_logging(LOGGER)
 
 
 PROMPT_TEMPLATE = """
@@ -86,4 +69,6 @@ def main():
 
 
 if __name__ == "__main__":
+     # For local testing.
+    LOGGER.info("main() invoked - query_rag.py - For local testing.")
     main()

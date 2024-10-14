@@ -15,10 +15,9 @@ from query_model import QueryModel
 from rag_app.query_rag import query_rag
 
 
-from lib.common import set_logging, get_lambda_client
+from lib.common import get_lambda_client
 
-LOGGER = logging.getLogger()
-set_logging(LOGGER)
+from loguru import logger as LOGGER
 
 WORKER_LAMBDA_NAME = os.environ.get("WORKER_LAMBDA_NAME", None)
 CHARACTER_LIMIT = 2000
@@ -35,7 +34,6 @@ app.add_middleware(
 )
 
 handler = Mangum(app)  # Entry point for AWS Lambda.
-
 
 class SubmitQueryRequest(BaseModel):
     query_text: str

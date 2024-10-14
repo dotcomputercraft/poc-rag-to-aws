@@ -2,3 +2,4 @@ langchain-aws==0.1.6
 langchain-community==0.2.1
 pytest
 pytest-cov
+loguru
