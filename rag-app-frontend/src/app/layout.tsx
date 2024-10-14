@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <title>Captiv Designs: AI Chat</title>
-      <body className={(inter.className = " bg-slate-200")}>
+      <body className={(inter.className = "bg-slate-200")}>
         <DynamicInnerLayout>{children}</DynamicInnerLayout>
       </body>
     </html>

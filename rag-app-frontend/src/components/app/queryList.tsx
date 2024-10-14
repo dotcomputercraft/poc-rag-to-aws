@@ -25,20 +25,24 @@ export default function QueryList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const request = {
-          userId: userId,
-        };
-        const response = api.listQueryEndpointListQueryGet(request);
-        response.then((data) => {
-          console.log(data);
-          setQueryItems(data);
+        if (userId) {
+          const request = {
+            userId: userId,
+          };
+          const response = await api.listQueryEndpointListQueryGet(request);
+          console.log(response);
+          setQueryItems(response);
           setIsLoading(false);
-        });
-        console.log(`Got data: ${response}`);
+          console.log(`Got data: ${JSON.stringify(response)}`);
+        } else {
+          console.error("User ID is null");
+          setIsLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
+        setIsLoading(false);
       }
-    };
+    };    
     fetchData();
   }, []);
 

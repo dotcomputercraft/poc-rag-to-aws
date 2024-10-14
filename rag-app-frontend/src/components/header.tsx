@@ -1,4 +1,4 @@
-import { Code, FileText, Globe, Home, User, Video } from "lucide-react";
+import {Globe, Home, User} from "lucide-react";
 import Link from "next/link";
 import { getApiUrl } from "@/lib/getApiClient";
 import { getSessionId } from "@/lib/getUserId";
