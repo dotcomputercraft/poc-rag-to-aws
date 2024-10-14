@@ -1,4 +1,4 @@
-import { Code, FileText, Globe, Home, User, Video } from "lucide-react";
+import { Code, FileText } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {

@@ -3,15 +3,16 @@ import logging
 import os
 import argparse
 
+# Add Parent Directory Programmatically
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 
 from dataclasses import dataclass
 from typing import List
 from langchain.prompts import ChatPromptTemplate
 from langchain_aws import ChatBedrock
 
-sys.path.append('./rag_app')
-
-from get_chroma_db import get_chroma_db
+from rag_app.get_chroma_db import get_chroma_db
 
 # You will also need to have Bedrock's model name enabled and granted for the region you are running this in.
 

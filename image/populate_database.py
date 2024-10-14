@@ -27,8 +27,8 @@ def set_logging(logger):
 LOGGER = logging.getLogger()
 set_logging(LOGGER)
 
-CHROMA_PATH = "src/data/chroma"
-DATA_SOURCE_PATH = "src/data/source"
+CHROMA_PATH = "image/src/data/chroma"
+DATA_SOURCE_PATH = "image/src/data/source"
 
 
 def main():

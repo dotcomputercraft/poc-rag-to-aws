@@ -3,12 +3,12 @@ import shutil
 import sys
 import os
 
-sys.path.append('./rag_app')
+# Add Parent Directory Programmatically
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from langchain_community.vectorstores import Chroma
-from get_embedding_function import get_embedding_function
+from rag_app.get_embedding_function import get_embedding_function
 from langchain_community.vectorstores import Chroma
-from get_embedding_function import get_embedding_function
 
 def set_logging(logger):
     # Setup Logging
@@ -72,4 +72,4 @@ def get_runtime_chroma_path():
     if IS_USING_IMAGE_RUNTIME:
         return f"/tmp/{CHROMA_PATH}"
     else:
-        return f"src/{CHROMA_PATH}"
+        return f"image/src/{CHROMA_PATH}"

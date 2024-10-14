@@ -46,3 +46,6 @@ sample.env
 # typescript
 *.tsbuildinfo
 next-env.d.tsgit 
+
+# pytest
+.pytest_cache
