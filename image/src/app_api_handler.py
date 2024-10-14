@@ -81,6 +81,9 @@ def submit_query_endpoint(request: SubmitQueryRequest) -> QueryModel:
     user_id = request.user_id if request.user_id else "nobody"
     new_query = QueryModel(query_text=request.query_text, user_id=user_id)
 
+    LOGGER.info(
+        f"submit_query_endpoint new_query: {new_query} - request: {request}")
+
     if WORKER_LAMBDA_NAME:
         LOGGER.info(f"submit_query_endpoint - Worker lambda name provided. WORKER_LAMBDA_NAME - {WORKER_LAMBDA_NAME}. Running asynchronously.")
         # Make an async call to the worker (the RAG/AI app).

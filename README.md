@@ -22,9 +22,15 @@ This project is a proof-of-concept for Retrieval-Augmented Generation (RAG) usin
 
 The UML diagram was created with a plugin called "PlanUML" which is a free for MS Code, PyCharm or intelliJ
 
+- The UML diagram was created with a plugin called "PlanUML" which is a free for MS Code, PyCharm or intelliJ
+
 # [More UML documentation here at](https://plantuml.com/sequence-diagram)
 
-## Infrastructure Architecture
+## Infrastructure Architecture NextJS
+
+![frontend-infra-architecture.puml](diagrams/frontend-infra-architecture.png)
+
+## Infrastructure Architecture AWS
 
 - The UML diagram was created with a plugin called "PlanUML" which is a free for MS Code, PyCharm or intelliJ
 

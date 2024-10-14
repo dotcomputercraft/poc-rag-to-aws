@@ -49,3 +49,5 @@ next-env.d.tsgit
 
 # pytest
 .pytest_cache
+
+misc.txt

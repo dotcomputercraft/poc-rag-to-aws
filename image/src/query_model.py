@@ -49,6 +49,10 @@ class QueryModel(BaseModel):
             f"put_item invoked. db_region - {db_region} - TABLE_NAME - {TABLE_NAME}")  
 
         item = self.as_ddb_item()
+
+        LOGGER.info(
+            f"put_item self.as_ddb_item(): item: {item}")  
+
         try:
             response = QueryModel.get_table().put_item(Item=item)
             LOGGER.info(response)
