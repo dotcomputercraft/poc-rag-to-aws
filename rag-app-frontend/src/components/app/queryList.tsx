@@ -22,12 +22,15 @@ export default function QueryList() {
   const [queryItems, setQueryItems] = useState<QueryModel[]>([]);
 
   // Create a hook to call the API.
+  // fetchData is defined inside useEffect to ensure it doesn’t cause unnecessary re-renders.
+  // The useEffect hook is called whenever the queryId changes.
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (userId) {
           const request = {
-            userId: userId,
+            userId: userId!,
           };
           const response = await api.listQueryEndpointListQueryGet(request);
           console.log(response);
@@ -44,7 +47,7 @@ export default function QueryList() {
       }
     };    
     fetchData();
-  }, []);
+  }, [api, userId]); // Include all dependencies here
 
   let queryElements;
   if (isLoading) {

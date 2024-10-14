@@ -24,6 +24,9 @@ export default function ViewQueryPage() {
   const [queryItem, setQueryItem] = useState<QueryModel>();
 
   // Create a hook to call the API.
+  // fetchData is defined inside useEffect to ensure it doesn’t cause unnecessary re-renders.
+  // The useEffect hook is called whenever the queryId changes.
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,7 +44,7 @@ export default function ViewQueryPage() {
       }
     };
     fetchData();
-  }, []);
+  }, [api, queryId]); // Include all dependencies here
 
   let viewQueryElement;
 
